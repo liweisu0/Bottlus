@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.bottlus.R
 import com.example.bottlus.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -32,6 +36,21 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        val gridItems = listOf(
+            GridItem(R.drawable.ic_launcher_foreground, "Item 1", "Article content 1"),
+            GridItem(R.drawable.ic_launcher_foreground, "Item 2", "Article content 2"),
+            // Add all 9 items here
+        )
+
+        binding.gridRecyclerView.adapter = GridAdapter(gridItems) { item ->
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToDetailFragment(item)
+            )
+        }
+
+        binding.gridRecyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
+
         return root
     }
 

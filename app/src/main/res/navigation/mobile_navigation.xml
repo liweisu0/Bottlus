@@ -22,4 +22,18 @@
         android:name="com.example.bottlus.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_detail"
+        android:name="com.example.bottlus.ui.home.DetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="item"
+            app:argType="com.example.bottlus.ui.home.GridItem" />
+    </fragment>
+
+    <action
+        android:id="@+id/action_navigation_home_to_detailFragment"
+        app:destination="@id/navigation_detail" />
 </navigation>
